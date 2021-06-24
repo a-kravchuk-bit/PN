@@ -1,0 +1,7 @@
+<integrations>
+    <integration name="PriorNotifyIntegration">
+        <email>someone@example.com</email>
+        <endpoint_url>https://dev-login.priornotify.com/login</endpoint_url>
+        <identity_link_url>https://dev-login.priornotify.com/login</identity_link_url>
+    </integration>
+</integrations>

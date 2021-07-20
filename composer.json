@@ -6,7 +6,7 @@
     },
     "require": {
         "php": "~7.3.0||~7.4.0",
-        "magento/module-integration": "2.0.0",
+        "magento/module-integration": "*",
         "magento/framework": "*",
         "magento/upward": "*",
         "magento/module-config": "*",

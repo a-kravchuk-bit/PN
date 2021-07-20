@@ -10,7 +10,9 @@
     </head>
     <body>
         <referenceContainer name="content">
-            <block class="Magento\Backend\Block\Template" template="PriorNotify_UpwardConnector::upwardconnector.phtml"/>
+            <block class="PriorNotify\UpwardConnector\Block\Template" template="PriorNotify_UpwardConnector::upwardconnector.phtml" >
+                <argument name="store_name" xsi:type="string">ExampleCorp</argument>.
+            </block>
         </referenceContainer>
     </body>
 </page>

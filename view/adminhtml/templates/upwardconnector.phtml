@@ -1,63 +1,95 @@
-<script>
-    function removeItem(sKey, sPath, sDomain) {
-        document.cookie = encodeURIComponent(sKey) + 
-            "=; expires=Thu, 01 Jan 1970 00:00:00 GMT" + 
-            (sDomain ? "; domain=" + sDomain : "") + 
-            (sPath ? "; path=" + sPath : "");
-    }
+<?php
 
-    var query = window.location.search.split('&');
-    if (query.length > 1) {
-        window.location = window.location.origin + window.location.pathname + query[0];
-    }
+    // $connection = \Magento\Framework\App\ResourceConnection->getConnection();
+    $connected = false;
+    function check($token) {
+        try {
+            $curl = curl_init( "https://dev-api.priornotify.com/users/me/magento-connection");
+            curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+                "x-magento-plugin-token: Token {$token}"
+            ));
+            // $json = curl_exec($curl);
+            // var_dump($this->getApiUrl());
 
-    window.addEventListener('focus', focus);
 
-    function focus(event) {
-        var cookies = document.cookie.split('; ');
-        var isReload = cookies.some(cookie => {
-            var name = cookie.split('=')[0];
-            var value = cookie.split('=')[1];
-            return name === 'reload' && value === '1';
-        })
-
-        if (isReload) {
-            removeItem('reload');
-            window.location.reload();
+            // if (strlen($json['data']['host'])) {
+            //     $connected = true;
+            // }
+            curl_close($curl);
+        } catch (Exception $e) {
+            $connected = false;
         }
     }
+    if (isset($_COOKIE['token'])) {
+        check($_COOKIE['token']);
+    }
+?>
 
 
-    var searchUrl = window.location.search;
-    var start = searchUrl.indexOf('token=');
-    var token = '';
-    if(start >= 0){
-        var last = searchUrl.indexOf('&', start) > 0 ? searchUrl.indexOf('&',start) : undefined;
-        token = searchUrl.substring(start, last ).replace('token=', '');
+<script>
+    function disconnect() {
+        const url = '<?php echo $this->getApiUrl(); ?>/integrations/magento/logout';
+        alert(url);
     }
-    if (token) {
-    document.cookie = "token=" + token;
-    window.location.replace(window.location.href.replace(`&token=${token}`, ''));
-    }
+    // function removeItem(sKey, sPath, sDomain) {
+    //     document.cookie = encodeURIComponent(sKey) + 
+    //         "=; expires=Thu, 01 Jan 1970 00:00:00 GMT" + 
+    //         (sDomain ? "; domain=" + sDomain : "") + 
+    //         (sPath ? "; path=" + sPath : "");
+    // }
+
+    // var query = window.location.search.split('&');
+    // if (query.length > 1) {
+    //     window.location = window.location.origin + window.location.pathname + query[0];
+    // }
+
+    // window.addEventListener('focus', focus);
+
+    // function focus(event) {
+    //     var cookies = document.cookie.split('; ');
+    //     var isReload = cookies.some(cookie => {
+    //         var name = cookie.split('=')[0];
+    //         var value = cookie.split('=')[1];
+    //         return name === 'reload' && value === '1';
+    //     })
+
+    //     if (isReload) {
+    //         removeItem('reload');
+    //         window.location.reload();
+    //     }
+    // }
+
+
+    // var searchUrl = window.location.search;
+    // var start = searchUrl.indexOf('token=');
+    // var token = '';
+    // if(start >= 0){
+    //     var last = searchUrl.indexOf('&', start) > 0 ? searchUrl.indexOf('&',start) : undefined;
+    //     token = searchUrl.substring(start, last ).replace('token=', '');
+    // }
+    // if (token) {
+    // document.cookie = "token=" + token;
+    // window.location.replace(window.location.href.replace(`&token=${token}`, ''));
+    // }
 </script>
 <div class="priorNotify__container">
     <div class="priorNotify__header">
         <div class="priorNotify__logo-wrapper">
-            <img class="priorNotify__logo" src="<?php echo $this->getViewFileUrl('PriorNotify_HelloWorld::images/logo.png'); ?>" alt="PriorNotify" />
+            <img class="priorNotify__logo" src="<?php echo $this->getViewFileUrl('PriorNotify_UpwardConnector::images/logo.png'); ?>" alt="PriorNotify" />
             <h1>PriorNotify plugin</h1>
         </div>
         <div>
-        {% if not isUserLogged %}
+        <?php if (!$this->getStatus()) { ?>
             <div class="priorNotify__header-auth">
-                <a class="btn-blue" target="_blank" href="{{api.baseUrl}}/register?redirect_uri={{site_url}}">Sign up</a>
-                <a class="btn-blue" target="_blank" href="{{api.baseUrl}}/connect-woocommerce?redirect_uri={{site_url | url_encode}}">Connect</a>
-            </div>
-        {% else %}
-            <div class="priorNotify__header-auth">
-                <a class="btn-white" href='{{site_url}}&logout=true'>Disconnect</a>
+                <a class="btn-white" href='javascript:void(0)' onclick="disconnect()">Disconnect</a>
                 <a class="btn-green" href="javascript:void(0)">Connected</a>
             </div>
-        {% endif %}
+        <?php } else { ?>
+            <div class="priorNotify__header-auth">
+                <a class="btn-blue" target="_blank" href="<?php echo $this->getFrontUrl(); ?>/register?redirect_uri=<?php echo $this->getBaseUrl(); ?>">Sign up</a>
+                <a class="btn-blue" target="_blank" href="<?php echo $this->getFrontUrl(); ?>/connect-magento?redirect_uri=<?php echo urlencode($this->getBaseUrl()); ?>">Connect</a>
+            </div>
+        <?php } ?>
         </div>
     </div>
     <div class="instruction">
@@ -82,10 +114,10 @@
         <p>That's it! You should then be connected with your PriorNotify account.</p>
     </div>
 </div>
-<script>
+<!-- <script>
     var FORMS = {{ forms|json_encode|raw }};
     var wooCommerceForm = FORMS.find(function (form) {
         return form.name === 'WooCommerce';
     });
-</script>
+</script> -->
 

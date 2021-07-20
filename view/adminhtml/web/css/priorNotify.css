@@ -98,10 +98,6 @@ body  {
     justify-content:  flex-end;
     margin-bottom:  20px;
 }
-.priorNotify__header-auth .btn-green,  .priorNotify__header-auth .btn-blue  {
-    display:  inline-block;
-    height:  20px;
-}
 .priorNotify__logo  {
     height:  50px;
     margin-right:  20px;

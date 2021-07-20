@@ -46,5 +46,28 @@ class Index extends Action implements HttpGetActionInterface
         $resultPage->getConfig()->getTitle()->prepend(__('Hello World'));
 
         return $resultPage;
+
+
+         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
+        $this->_view->loadLayout();
+
+        $post = $this->getRequest()->getPostValue();
+        $we =  $this->getRequest()->getParams();         
+
+    // echo "<pre>";print_r($we);        
+        if(!empty($we['ripple_email'])){
+            $register_email= $we['ripple_email']; 
+            if(!class_exists('afclass'))
+            include_once 'afclass.php';  
+            // $curl_info = new afclass;
+            $asset_id = Afclass::before_registration($register_email); 
+            $value =225; 
+            $block = $this->_view->getLayout()->createBlock('module\Block\Adminhtml\CustomBlock');
+
+            $block->setFeedback($value);
+
+        }
+
+    $this->_view->renderLayout();
     }
 }

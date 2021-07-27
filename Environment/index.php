@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace PriorNotify\UpwardConnector\Environment;
+namespace IncubatorLLC\PriorNotify\Environment;
 
 class Environment
 {

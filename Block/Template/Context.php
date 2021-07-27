@@ -3,12 +3,12 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace PriorNotify\UpwardConnector\Block\Template;
+namespace IncubatorLLC\PriorNotify\Block\Template;
 
 use Magento\Framework\Cache\LockGuardedCacheLoader;
 
 /**
- * Constructor modification point for PriorNotify\UpwardConnector\Block\Template.
+ * Constructor modification point for IncubatorLLC\PriorNotify\Block\Template.
  *
  * All context classes were introduced to allow for backwards compatible constructor modifications
  * of classes that were supposed to be extended by extension developers.

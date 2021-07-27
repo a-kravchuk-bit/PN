@@ -1,5 +1,5 @@
 <integrations>
-    <integration name="PriorNotifyIntegration3">
+    <integration name="PriorNotify Integration">
         <email></email>
         <endpoint_url>https://dev-api.priornotify.com/auth/magento-callback</endpoint_url>
         <identity_link_url>https://dev-login.priornotify.com/connect-magento</identity_link_url>

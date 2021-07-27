@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace PriorNotify\UpwardConnector\Block;
+namespace IncubatorLLC\PriorNotify\Block;
 
 use Magento\Framework\App\ObjectManager;
 use Magento\Framework\Json\Helper\Data as JsonHelper;
@@ -17,23 +17,6 @@ use Magento\Framework\HTTP\Client\Curl;
 use Magento\Store\Model\StoreManagerInterface;
 
 /**
- * Standard admin block. Adds admin-specific behavior and event.
- * Should be used when you declare a block in admin layout handle.
- *
- * Avoid extending this class if possible.
- *
- * If you need custom presentation logic in your blocks, use this class as block, and declare
- * custom view models in block arguments in layout handle file.
- *
- * Example:
- * <block name="my.block" class="PriorNotify\UpwardConnector\Block\Template" template="My_Module::template.phtml" >
- *      <arguments>
- *          <argument name="view_model" xsi:type="object">My\Module\ViewModel\Custom</argument>
- *      </arguments>
- * </block>
- *
- * Your class object can then be accessed by doing $block->getViewModel()
- *
  * @api
  * @SuppressWarnings(PHPMD.NumberOfChildren)
  * @since 100.0.2
@@ -55,7 +38,7 @@ class Template extends \Magento\Framework\View\Element\Template
     protected $mathRandom;
 
     /**
-     * @var \PriorNotify\UpwardConnector\Model\Session
+     * @var \IncubatorLLC\PriorNotify\Model\Session
      */
     protected $_backendSession;
 
@@ -88,7 +71,7 @@ class Template extends \Magento\Framework\View\Element\Template
      * @param \Magento\Framework\HTTP\Client\Curl $curl
      * @param \Magento\Framework\App\ResourceConnection $resourceConnection
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-     * @param \PriorNotify\UpwardConnector\Block\Template\Context $context
+     * @param \IncubatorLLC\PriorNotify\Block\Template\Context $context
      * @param array $data
      * @param JsonHelper|null $jsonHelper
      * @param DirectoryHelper|null $directoryHelper
@@ -97,7 +80,7 @@ class Template extends \Magento\Framework\View\Element\Template
         Curl $curl,
         ResourceConnection $resourceConnection,
         // ScopeConfigInterface $scopeConfig,
-        \PriorNotify\UpwardConnector\Block\Template\Context $context,
+        \IncubatorLLC\PriorNotify\Block\Template\Context $context,
         array $data = [],
         ?JsonHelper $jsonHelper = null,
         ?DirectoryHelper $directoryHelper = null
@@ -196,6 +179,10 @@ class Template extends \Magento\Framework\View\Element\Template
 
             $query = 'SELECT value FROM ' . $tableName . ' ORDER BY id DESC limit 1';
             $token =$this->resourceConnection->getConnection()->fetchOne($query);
+
+            if (!$token) {
+                return false;
+            }
 
             $url = "https://dev-api.priornotify.com/users/me/magento-connection";
 

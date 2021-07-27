@@ -1,5 +1,5 @@
 <?php 
-namespace PriorNotify\UpwardConnector\Setup;
+namespace IncubatorLLC\PriorNotify\Setup;
 use Magento\Framework\Setup\SchemaSetupInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\DB\Ddl\Table;

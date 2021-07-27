@@ -19,14 +19,14 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
-namespace PriorNotify\UpwardConnector\Model\Config\Backend;
+namespace IncubatorLLC\PriorNotify\Model\Config\Backend;
 
 use Magento\Framework\App\Config\Value;
 use Magento\Framework\Exception\ValidatorException;
 
 /**
  * Class Email
- * @package PriorNotify\UpwardConnector\Model\Config\Backend
+ * @package IncubatorLLC\PriorNotify\Model\Config\Backend
  */
 class Email extends Value
 {

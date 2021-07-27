@@ -19,13 +19,13 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
-namespace PriorNotify\UpwardConnector\Model\Config;
+namespace IncubatorLLC\PriorNotify\Model\Config;
 
 use Magento\Framework\Option\ArrayInterface;
 
 /**
  * Class AbstractSource
- * @package PriorNotify\UpwardConnector\Model\Config
+ * @package IncubatorLLC\PriorNotify\Model\Config
  */
 abstract class AbstractSource implements ArrayInterface
 {

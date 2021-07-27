@@ -19,13 +19,13 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
-namespace PriorNotify\UpwardConnector\Model\ResourceModel;
+namespace IncubatorLLC\PriorNotify\Model\ResourceModel;
 
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
 /**
  * Class History
- * @package PriorNotify\UpwardConnector\Model\ResourceModel
+ * @package IncubatorLLC\PriorNotify\Model\ResourceModel
  */
 class History extends AbstractDb
 {

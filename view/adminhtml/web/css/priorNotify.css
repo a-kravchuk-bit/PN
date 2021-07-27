@@ -107,6 +107,9 @@ body  {
     justify-content:  space-between;
     margin-bottom:  10px;
 }
+.priorNotify__logo-wrapper > h1 {
+    margin: 10px 0px;
+}
 .priorNotify__block-title  {
     color:  #2B9A2D;
     font-size:  24px;

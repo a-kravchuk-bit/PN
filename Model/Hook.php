@@ -19,14 +19,14 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
-namespace PriorNotify\UpwardConnector\Model;
+namespace IncubatorLLC\PriorNotify\Model;
 
 use Magento\Framework\Model\AbstractModel;
-use PriorNotify\UpwardConnector\Helper\Data;
+use IncubatorLLC\PriorNotify\Helper\Data;
 
 /**
  * Class Hook
- * @package PriorNotify\UpwardConnector\Model
+ * @package IncubatorLLC\PriorNotify\Model
  */
 class Hook extends AbstractModel
 {

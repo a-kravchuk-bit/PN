@@ -7,5 +7,5 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-	<preference for="PriorNotify\UpwardConnector\Api\PostManagementInterface" type="PriorNotify\UpwardConnector\Model\PostManagement"/>
+	<preference for="IncubatorLLC\PriorNotify\Api\PostManagementInterface" type="IncubatorLLC\PriorNotify\Model\PostManagement"/>
 </config>

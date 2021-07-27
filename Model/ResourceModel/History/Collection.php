@@ -19,14 +19,14 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
-namespace PriorNotify\UpwardConnector\Model\ResourceModel\History;
+namespace IncubatorLLC\PriorNotify\Model\ResourceModel\History;
 
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
-use PriorNotify\UpwardConnector\Model\ResourceModel\History;
+use IncubatorLLC\PriorNotify\Model\ResourceModel\History;
 
 /**
  * Class Collection
- * @package PriorNotify\UpwardConnector\Model\ResourceModel\History
+ * @package IncubatorLLC\PriorNotify\Model\ResourceModel\History
  */
 class Collection extends AbstractCollection
 {
@@ -58,6 +58,6 @@ class Collection extends AbstractCollection
      */
     protected function _construct()
     {
-        $this->_init(\PriorNotify\UpwardConnector\Model\History::class, History::class);
+        $this->_init(\IncubatorLLC\PriorNotify\Model\History::class, History::class);
     }
 }

@@ -19,13 +19,13 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
-namespace PriorNotify\UpwardConnector\Model\Config\Source;
+namespace IncubatorLLC\PriorNotify\Model\Config\Source;
 
 use Magento\Framework\Option\ArrayInterface;
 
 /**
  * Class HookType
- * @package PriorNotify\UpwardConnector\Model\Config\Source
+ * @package IncubatorLLC\PriorNotify\Model\Config\Source
  */
 class HookType implements ArrayInterface
 {

@@ -1,5 +1,5 @@
 <?php
-    namespace PriorNotify\UpwardConnector\Setup;
+    namespace IncubatorLLC\PriorNotify\Setup;
 
     use Magento\Framework\Setup\ModuleContextInterface;
     use Magento\Framework\Setup\ModuleDataSetupInterface;
@@ -41,8 +41,8 @@
         public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
         {
             $this->configWriter->save(self::API_URL, "https://dev-api.priornotify.com");
-            $this->configWriter->save(self::FRONT_URL, "https://dev-login.priornotify.com/");
+            $this->configWriter->save(self::FRONT_URL, "https://dev-login.priornotify.com");
 
-            $this->integrationManager->processIntegrationConfig(['PriorNotifyIntegration3']);
+            $this->integrationManager->processIntegrationConfig(['PriorNotify Integration']);
         }
     }

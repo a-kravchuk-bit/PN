@@ -1,9 +1,8 @@
 <?php 
-namespace PriorNotify\UpwardConnector\Api;
+namespace IncubatorLLC\PriorNotify\Api;
 
 
 interface PostManagementInterface {
-
 
 	/**
 	 * GET for Post api
@@ -12,4 +11,18 @@ interface PostManagementInterface {
 	 */
 	
 	public function getPost($token);
+
+	/**
+	 * GET for Post api
+	 * @return string
+	 */
+
+	public function deleteToken();
+
+	/**
+	 * GET for Post api
+	 * @return string
+	 */
+
+	public function checkToken();
 }

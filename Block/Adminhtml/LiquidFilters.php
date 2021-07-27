@@ -19,14 +19,14 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
-namespace PriorNotify\UpwardConnector\Block\Adminhtml;
+namespace IncubatorLLC\PriorNotify\Block\Adminhtml;
 
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Store\Model\StoreManagerInterface;
 
 /**
  * Class LiquidFilters
- * @package PriorNotify\UpwardConnector\Block\Adminhtml
+ * @package IncubatorLLC\PriorNotify\Block\Adminhtml
  */
 class LiquidFilters
 {

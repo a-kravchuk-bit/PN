@@ -19,17 +19,19 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
-namespace PriorNotify\UpwardConnector\Observer;
+namespace IncubatorLLC\PriorNotify\Observer;
 
 use Magento\Framework\Event\ObserverInterface;
 use Psr\Log\LoggerInterface;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\HTTP\Client\Curl;
 use Magento\Framework\App\ResourceConnection;
+use Magento\Store\Model\StoreManagerInterface;
+use Magento\Framework\App\ObjectManager;
 
 /**
  * Class AfterOrder
- * @package PriorNotify\UpwardConnector\Observer
+ * @package IncubatorLLC\PriorNotify\Observer
  */
 class AfterOrder implements ObserverInterface
 {
@@ -37,6 +39,8 @@ class AfterOrder implements ObserverInterface
     const CUSTOMER_ENTITY = 'customer_entity';
     const QUOTE_ADDRESS = 'quote_address';
     const QUOTE_ITEM = 'quote_item';
+    const PRIOR_NOTIFY = 'prior_notify';
+
     /**
      * CURL client
      *
@@ -81,6 +85,15 @@ class AfterOrder implements ObserverInterface
 
         $connection = $this->resourceConnection->getConnection();
 
+        $priorNotifyTableName = $connection->getTableName(self::PRIOR_NOTIFY);
+        $query = 'SELECT value FROM ' . $priorNotifyTableName . ' ORDER BY id DESC limit 1';
+        $token =$this->resourceConnection->getConnection()->fetchOne($query);
+
+        if (!$token) {
+            $this->logger->debug('AfterOrder token is not valid');
+            return false;
+        }
+
 		$orderTableName = $connection->getTableName(self::SALES_ORDER);
         $selectOrder = $connection->select()->from($orderTableName)->where('entity_id = ?', $orderId);
         $resultOrder = $connection->fetchRow($selectOrder);
@@ -99,8 +112,11 @@ class AfterOrder implements ObserverInterface
         $quoteItemTableName = $connection->getTableName(self::QUOTE_ITEM);
         $selectQuoteItemAddress = $connection->select()->from($quoteItemTableName)->where('quote_id = ?', $resultOrder['quote_id']);
         $resultQuoteItemAddress = $connection->fetchAll($selectQuoteItemAddress);
+
+        $storeManager = ObjectManager::getInstance()->get(StoreManagerInterface::class);
+        $baseUrl = $storeManager->getStore()->getBaseUrl();
         
-        $url = "https://ddeaa3f82ad2.ngrok.io/webhooks/magento_order_paid";
+        $url = "https://dev-api.priornotify.com/webhooks/magento_order_paid";
 
         $body = array(
             'order' => $resultOrder,
@@ -108,8 +124,10 @@ class AfterOrder implements ObserverInterface
             'billing_address' => $resultBillingAddress,
             'shipping_address' => $resultShippingAddress,
             'products' => $resultQuoteItemAddress,
+            'base_url' => $baseUrl,
         );
 
+        $this->curl->addHeader("x-magento-plugin-token", "Token ".$token);
         $this->curl->post($url, ['data' =>json_encode($body)]);
         $response = json_decode($this->curl->getBody(), true);
         $result = $this->curl->getBody();

@@ -1,8 +1,8 @@
 <?php 
-namespace PriorNotify\UpwardConnector\Model;
+namespace IncubatorLLC\PriorNotify\Model;
 class DataExample extends \Magento\Framework\Model\AbstractModel{
 	public function _construct(){
-		$this->_init("PriorNotify\UpwardConnector\Model\ResourceModel\DataExample");
+		$this->_init("IncubatorLLC\PriorNotify\Model\ResourceModel\DataExample");
 	}
 }
 ?>

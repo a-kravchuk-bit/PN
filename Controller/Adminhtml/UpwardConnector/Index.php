@@ -1,5 +1,5 @@
 <?php
-namespace PriorNotify\UpwardConnector\Controller\Adminhtml\UpwardConnector;
+namespace IncubatorLLC\PriorNotify\Controller\Adminhtml\UpwardConnector;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
@@ -12,7 +12,7 @@ use Magento\Framework\View\Result\PageFactory;
  */
 class Index extends Action implements HttpGetActionInterface
 {
-    const MENU_ID = 'PriorNotify_UpwardConnector::system_prior_notify';
+    const MENU_ID = 'IncubatorLLC_PriorNotify::system_prior_notify';
 
     /**
      * @var PageFactory
@@ -43,7 +43,7 @@ class Index extends Action implements HttpGetActionInterface
     {
         $resultPage = $this->resultPageFactory->create();
         $resultPage->setActiveMenu(static::MENU_ID);
-        $resultPage->getConfig()->getTitle()->prepend(__('Hello World'));
+        $resultPage->getConfig()->getTitle()->prepend(__(''));
 
         return $resultPage;
 

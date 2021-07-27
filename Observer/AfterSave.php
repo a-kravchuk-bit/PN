@@ -19,7 +19,7 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
-namespace PriorNotify\UpwardConnector\Observer;
+namespace IncubatorLLC\PriorNotify\Observer;
 
 use Exception;
 use Magento\Framework\Event\Observer;
@@ -33,7 +33,7 @@ use Magento\Framework\HTTP\Client\Curl;
 
 /**
  * Class AfterSave
- * @package PriorNotify\UpwardConnector\Observer
+ * @package IncubatorLLC\PriorNotify\Observer
  */
 abstract class AfterSave implements ObserverInterface
 {

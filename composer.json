@@ -1,17 +1,18 @@
 {
-    "name": "prior-notify/upward-connector",
+    "name": "incubator-llc/prior-notify",
     "description": "PriorNotify module used for routing all frontend requests through UPWARD-PHP.",
     "config": {
         "sort-packages": true
     },
     "require": {
         "php": "~7.3.0||~7.4.0",
-        "magento/module-integration": "*",
+        "magento/module-integration": "2.0.0",
         "magento/framework": "*",
         "magento/upward": "*",
         "magento/module-config": "*",
         "magento/module-store": "*",
-        "yireo/magento2-disable-service-worker-in-admin": "^0.0.2"
+        "yireo/magento2-disable-service-worker-in-admin": "^0.0.2",
+        "liquid/liquid": "^1.4.8"
     },
     "type": "magento2-module",
     "license": [
@@ -23,7 +24,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "PriorNotify\\UpwardConnector\\": ""
+            "IncubatorLLC\\PriorNotify\\": ""
         }
     }
 }

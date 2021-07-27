@@ -19,7 +19,7 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
-namespace PriorNotify\UpwardConnector\Model\ResourceModel;
+namespace IncubatorLLC\PriorNotify\Model\ResourceModel;
 
 use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
@@ -28,7 +28,7 @@ use Magento\Framework\Stdlib\DateTime\DateTime;
 
 /**
  * Class Hook
- * @package PriorNotify\UpwardConnector\Model\ResourceModel
+ * @package IncubatorLLC\PriorNotify\Model\ResourceModel
  */
 class Hook extends AbstractDb
 {

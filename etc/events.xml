@@ -22,12 +22,6 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
     <event name="sales_order_save_after">
-        <observer name="mp_wh_order" instance="PriorNotify\UpwardConnector\Observer\AfterOrder"/>
-    </event>
-    <event name="sales_order_status_history_save_after">
-        <observer name="mp_wh_before_order" instance="PriorNotify\UpwardConnector\Observer\AfterOrderComment"/>
-    </event>
-    <event name="sales_order_delete_after">
-        <observer name="mp_wh_new_shipment" instance="PriorNotify\UpwardConnector\Observer\AfterShipment"/>
+        <observer name="mp_wh_order" instance="IncubatorLLC\PriorNotify\Observer\AfterOrder"/>
     </event>
 </config>
